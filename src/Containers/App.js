@@ -5,38 +5,32 @@ import SearchBox from "../Components/SearchBox";
 import { apiCall } from "../api/api";
 import Scroll from "../Components/Scroll";
 import { connect } from 'react-redux';
-import { setSearchTerm } from '../actions';
+import { setSearchTerm, getRobots } from '../actions';
 
 const mapStateToProps = (state) => {
   return {
-    searchTerm: state.searchTerm
+    searchTerm: state.search.searchTerm,
+    robots: state.robotData.robots,
+    isPending: state.robotData.isPending,
   }
 };
 
 const mapDispatchToProps = (dispatch) => {
   return {
     onSearchChange: (evt) => dispatch(setSearchTerm(evt.target.value)),
+    getRobots: () => { dispatch(getRobots())},
   }
 }
 
 class App extends Component {
-  constructor() {
-    super();
-    this.state = {
-      robots: [],
-      isPending: true
-    };
-  }
+  
   componentDidMount() {
-    apiCall("https://jsonplaceholder.typicode.com/users").then(
-      response => this.setState({ robots: response, isPending: false })
-    );
+    this.props.getRobots();
   }
 
 
 
   render() {
-    console.log(this.props);
     const { robots, isPending } = this.state;
     const { onSearchChange, searchTerm } = this.props;
     const filteredRobots = robots.filter(
