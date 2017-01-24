@@ -1,8 +1,18 @@
 import React from "react";
 import ReactDOM from "react-dom";
-// glue between React and the DOM
 import App from "./Containers/App";
 import "./index.css";
-import "tachyons";
 
-ReactDOM.render(<App />, document.getElementById("root"));
+import appReducer from './reducers'
+import { createStore } from 'redux';
+import { Provider } from 'react-redux';
+
+const store = createStore(appReducer);
+
+
+ReactDOM.render(
+  <Provider store={store}>
+    <App />
+  </Provider>, 
+    document.getElementById("root")
+);

@@ -11,6 +11,8 @@
     "fetch": "^1.1.0",
     "react": "^15.4.1",
     "react-dom": "^15.4.1",
+    "redux": "^3.6.0",
+    "redux-logger": "^2.7.4",
     "tachyons": "^4.6.1"
   },
   "scripts": {
@@ -18,6 +20,6 @@
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject",
-    "deploy" : "npm run build && gh-pages -d build"
+    "deploy": "npm run build && gh-pages -d build"
   }
 }

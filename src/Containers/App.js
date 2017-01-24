@@ -4,35 +4,48 @@ import CardList from "../Components/CardList";
 import SearchBox from "../Components/SearchBox";
 import { apiCall } from "../api/api";
 import Scroll from "../Components/Scroll";
+import { connect } from 'react-redux';
+import { setSearchTerm } from '../actions';
+
+const mapStateToProps = (state) => {
+  return {
+    searchTerm: state.searchTerm
+  }
+};
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    onSearchChange: (evt) => dispatch(setSearchTerm(evt.target.value)),
+  }
+}
 
 class App extends Component {
   constructor() {
     super();
     this.state = {
-      searchTerm: "",
       robots: [],
       isPending: true
     };
   }
-  componentWillMount() {
+  componentDidMount() {
     apiCall("https://jsonplaceholder.typicode.com/users").then(
       response => this.setState({ robots: response, isPending: false })
     );
   }
 
-  onSearchChange = evt => {
-    this.setState({ searchTerm: evt.target.value });
-  };
+
 
   render() {
-    const { searchTerm, robots, isPending } = this.state;
+    console.log(this.props);
+    const { robots, isPending } = this.state;
+    const { onSearchChange, searchTerm } = this.props;
     const filteredRobots = robots.filter(
       robot => robot.name.toLowerCase().includes(searchTerm.toLowerCase())
     );
     return (
       <div className="tc">
         <h1>RoboDex</h1>
-        <SearchBox onSearchChange={this.onSearchChange} />
+        <SearchBox onSearchChange={onSearchChange} />
         <Scroll>
           {
             isPending
@@ -45,4 +58,7 @@ class App extends Component {
   }
 }
 
-export default App
+export default connect(
+  mapStateToProps, 
+  mapDispatchToProps
+)(App);
