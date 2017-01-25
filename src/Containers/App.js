@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import "./App.css";
 import CardList from "../Components/CardList";
 import SearchBox from "../Components/SearchBox";
-import { apiCall } from "../api/api";
 import Scroll from "../Components/Scroll";
 import { connect } from 'react-redux';
 import { setSearchTerm, getRobots } from '../actions';
@@ -25,13 +24,15 @@ const mapDispatchToProps = (dispatch) => {
 class App extends Component {
   
   componentDidMount() {
+    console.log(this.props);
     this.props.getRobots();
   }
 
 
 
   render() {
-    const { robots, isPending } = this.state;
+    console.log(this.props);
+    const { robots, isPending } = this.props;
     const { onSearchChange, searchTerm } = this.props;
     const filteredRobots = robots.filter(
       robot => robot.name.toLowerCase().includes(searchTerm.toLowerCase())
