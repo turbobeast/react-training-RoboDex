@@ -1,8 +1,7 @@
 import React, { Component } from "react";
 import "./App.css";
 import CardList from "../Components/CardList";
-import SearchBox from "../Components/SearchBox";
-import Scroll from "../Components/Scroll";
+import CardFilterView from "../Components/CardFilterView";
 import { connect } from 'react-redux';
 import { setSearchTerm, getRobots } from '../actions';
 
@@ -28,26 +27,19 @@ class App extends Component {
     this.props.getRobots();
   }
 
-
-
   render() {
     console.log(this.props);
-    const { robots, isPending } = this.props;
-    const { onSearchChange, searchTerm } = this.props;
-    const filteredRobots = robots.filter(
-      robot => robot.name.toLowerCase().includes(searchTerm.toLowerCase())
-    );
+    const { robots, isPending, onSearchChange, searchTerm } = this.props;
+    
     return (
       <div className="tc">
         <h1>RoboDex</h1>
-        <SearchBox onSearchChange={onSearchChange} />
-        <Scroll>
-          {
-            isPending
-              ? <h2>Loading...</h2>
-              : <CardList robots={filteredRobots} />
-          }
-        </Scroll>
+        <CardFilterView 
+          isPending={isPending}
+          onSearchChange={onSearchChange} 
+          robots={robots}  
+          searchTerm={searchTerm}
+        />
       </div>
     );
   }
