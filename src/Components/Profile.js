@@ -1,4 +1,6 @@
 import React from 'react';
+import { connect } from 'react-redux';
+
 
 const Profile = ({id = 1, robots}) => {
   const robot = robots.find((robot) => robot.id == id) 
@@ -29,4 +31,12 @@ const Profile = ({id = 1, robots}) => {
   );
 }
 
-export default Profile
+const mapStateToProps = (state) => {
+  return {
+    robots: state.robotData.robots,
+  }
+};
+
+export default connect(
+  mapStateToProps, 
+)(Profile);

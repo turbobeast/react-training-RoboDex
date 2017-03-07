@@ -35,7 +35,7 @@ class App extends Component {
     return (
       <div className="tc">
         <h1>RoboDex</h1>
-        <Profile robots={robots} />
+        <Profile />
       </div>
     );
   }
