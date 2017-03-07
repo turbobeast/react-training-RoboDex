@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import "./App.css";
 import CardList from "../Components/CardList";
 import CardFilterView from "../Components/CardFilterView";
+import Profile from "../Components/Profile";
 import { connect } from 'react-redux';
 import { setSearchTerm, getRobots } from '../actions';
 
@@ -34,12 +35,7 @@ class App extends Component {
     return (
       <div className="tc">
         <h1>RoboDex</h1>
-        <CardFilterView 
-          isPending={isPending}
-          onSearchChange={onSearchChange} 
-          robots={robots}  
-          searchTerm={searchTerm}
-        />
+        <Profile robots={robots} />
       </div>
     );
   }
