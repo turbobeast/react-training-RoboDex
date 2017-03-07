@@ -20,7 +20,7 @@ class App extends Component {
     return (
       <div className="tc">
         <h1>RoboDex</h1>
-        <CardFilterView />
+        <Profile />
       </div>
     );
   }
