@@ -1,4 +1,6 @@
 import React, { Component } from "react";
+import {BrowserRouter as Router, Route,} from 'react-router-dom'
+
 import "./App.css";
 import CardFilterView from "../Components/CardFilterView";
 import Profile from "../Components/Profile";
@@ -20,7 +22,12 @@ class App extends Component {
     return (
       <div className="tc">
         <h1>RoboDex</h1>
-        <Profile />
+        <Router>
+          <div>
+            <Route exact={true} path="/" component={CardFilterView} />
+            <Route path="/profile/:id" component={Profile} />
+          </div>
+        </Router>
       </div>
     );
   }

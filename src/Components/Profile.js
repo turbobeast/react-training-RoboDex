@@ -3,7 +3,9 @@ import { connect } from 'react-redux';
 
 
 const Profile = ({id = 1, robots}) => {
-  const robot = robots.find((robot) => robot.id == id) 
+  
+  const robot = robots.find((robot) => robot.id === id) 
+  
   return (
 
     <div>
@@ -11,7 +13,7 @@ const Profile = ({id = 1, robots}) => {
         <div className="profile">
           <div className="column headshot">
             <div>
-              <img src={`//robohash.org/${id}?size=400x400`} />
+              <img alt="" src={`//robohash.org/${id}?size=400x400`} />
             </div>
             <h2>{robot.name}</h2>
           </div>
@@ -30,10 +32,10 @@ const Profile = ({id = 1, robots}) => {
     </div>
   );
 }
-
-const mapStateToProps = (state) => {
+const mapStateToProps = (state, ownProps) => {
   return {
     robots: state.robotData.robots,
+    id: parseInt(ownProps.match.params.id, 10),
   }
 };
 
