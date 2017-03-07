@@ -1,5 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { Link } from 'react-router-dom'
 
 
 const Profile = ({id = 1, robots}) => {
@@ -8,7 +9,7 @@ const Profile = ({id = 1, robots}) => {
   
   return (
 
-    <div>
+    <div className="profilePage">
       { robot && 
         <div className="profile">
           <div className="column headshot">
@@ -25,10 +26,11 @@ const Profile = ({id = 1, robots}) => {
             </p>
             <p>{ robot.address.city}</p>
             <p>{ robot.address.zipcode}</p>
-            <a href={`mailto:${robot.email}`}>Email</a>
+            <a className="button" href={`mailto:${robot.email}`}>Email</a>
           </div>
         </div>
       }
+    <Link className="button" to={`/`}>Go Back</Link>
     </div>
   );
 }

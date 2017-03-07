@@ -37,15 +37,18 @@ h1 {
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }
 }
-
+.profilePage {
+  max-width:800px;
+  margin:0px auto;
+  text-align:left;
+}
 .profile {
   display: flex;
   flex-direction: row;
-  justify-content: center;
+  justify-content: left;
   align-items: center;
   height: 100%;
-  max-width:800px;
-  margin:0px auto;
+  
 }
 
 .column {
@@ -88,7 +91,10 @@ h1 {
 .address p {
   margin:0px;
 }
-.address a {
+.address .button {
+  margin:20px 0px;
+}
+.button{
   display:inline-block; 
   padding:8px 16px;
   border-radius:6px;
@@ -98,4 +104,6 @@ h1 {
   text-decoration:none;
   margin:20px 0px;
 }
+
+
 
