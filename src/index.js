@@ -1,6 +1,6 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import App from "./Containers/App";
+import App from "./Containers/App/App";
 import "./index.css";
 
 import appReducer from './reducers'
@@ -12,10 +12,9 @@ import reduxThunk from 'redux-thunk';
 const logger = createLogger();
 const store = createStore(appReducer, applyMiddleware(logger, reduxThunk));
 
-
 ReactDOM.render(
   <Provider store={store}>
     <App />
   </Provider>, 
-    document.getElementById("root")
+  document.getElementById("root")
 );

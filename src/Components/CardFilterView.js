@@ -1,21 +1,7 @@
 import React from 'react';
-import { connect } from 'react-redux';
 import CardList from "../Components/CardList";
 import SearchBox from "../Components/SearchBox";
 import Scroll from "../Components/Scroll";
-import { setSearchTerm } from '../actions';
-
-const mapStateToProps = (state) => {
-  return {
-    searchTerm: state.search.searchTerm,
-    robots: state.robotData.robots,
-    isPending: state.robotData.isPending,
-  }
-};
-
-const mapDispatchToProps = (dispatch) => ({
-    onSearchChange: (evt) => dispatch(setSearchTerm(evt.target.value)),
-})
 
 const CardFilterView = ({ 
   onSearchChange, 
@@ -27,8 +13,7 @@ const CardFilterView = ({
   );
   return (
     <div>
-      <SearchBox 
-        onSearchChange={onSearchChange} />
+      <SearchBox onSearchChange={onSearchChange} searchTerm={searchTerm} />
         <Scroll>
           {
             isPending
@@ -40,4 +25,4 @@ const CardFilterView = ({
     );
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(CardFilterView);
+export default CardFilterView;

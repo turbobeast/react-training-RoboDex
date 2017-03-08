@@ -1,7 +1,5 @@
 import React from 'react';
-import { connect } from 'react-redux';
 import { Link } from 'react-router-dom'
-
 
 const Profile = ({id = 1, robots}) => {
   
@@ -34,13 +32,5 @@ const Profile = ({id = 1, robots}) => {
     </div>
   );
 }
-const mapStateToProps = (state, ownProps) => {
-  return {
-    robots: state.robotData.robots,
-    id: parseInt(ownProps.match.params.id, 10),
-  }
-};
 
-export default connect(
-  mapStateToProps, 
-)(Profile);
+export default Profile;
