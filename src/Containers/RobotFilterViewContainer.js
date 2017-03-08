@@ -4,9 +4,14 @@ import { getRobots } from '../actions';
 import CardFilterView from '../Components/CardFilterView';
 
 const mapStateToProps = (state) => {
+  const searchTerm = state.search.searchTerm
+  const filteredRobots = state.robotData.robots.filter(
+    robot => robot.name.toLowerCase().includes(searchTerm.toLowerCase())
+  );
+
   return {
-    searchTerm: state.search.searchTerm,
-    robots: state.robotData.robots,
+    searchTerm,
+    robots: filteredRobots,
     isPending: state.robotData.isPending,
   }
 };
@@ -14,6 +19,6 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => ({
     onSearchChange: (evt) => dispatch(setSearchTerm(evt.target.value)),
     getRobots: () => { dispatch(getRobots())},
-})
+});
 
 export default connect(mapStateToProps, mapDispatchToProps)(CardFilterView);

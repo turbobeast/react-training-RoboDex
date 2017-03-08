@@ -8,9 +8,7 @@ const CardFilterView = ({
   searchTerm, 
   isPending, 
   robots }) => {
-  const filteredRobots = robots.filter(
-    robot => robot.name.toLowerCase().includes(searchTerm.toLowerCase())
-  );
+
   return (
     <div>
       <SearchBox onSearchChange={onSearchChange} searchTerm={searchTerm} />
@@ -18,11 +16,18 @@ const CardFilterView = ({
           {
             isPending
               ? <h2>Loading... { searchTerm }</h2>
-              : <CardList robots={filteredRobots} />
+              : <CardList robots={robots} />
           }
         </Scroll>
     </div>
     );
 }
+
+CardFilterView.propTypes = {
+  onSearchChange: React.PropTypes.func.isRequired,
+  searchTerm: React.PropTypes.string.isRequired,
+  isPending: React.PropTypes.bool.isRequired,
+  robots: React.PropTypes.array
+};
 
 export default CardFilterView;

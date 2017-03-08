@@ -3,7 +3,7 @@ import {BrowserRouter as Router, Route,} from 'react-router-dom'
 
 import "./App.css";
 import RobotFilterViewContainer from "../RobotFilterViewContainer";
-import RobotProfileContainer from "../RobotProfileContainer";
+import RobotProfileViewContainer from "../RobotProfileViewContainer";
 import { connect } from 'react-redux';
 import { getRobots } from '../../actions';
 
@@ -25,7 +25,7 @@ class App extends Component {
         <Router>
           <div>
             <Route exact={true} path="/" component={RobotFilterViewContainer} />
-            <Route path="/profile/:id" component={RobotProfileContainer} />
+            <Route path="/profile/:id" component={RobotProfileViewContainer} />
           </div>
         </Router>
       </div>
