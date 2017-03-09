@@ -1,7 +1,7 @@
-import React from "react";
-import ReactDOM from "react-dom";
-import App from "./Containers/App/App";
-import "./index.css";
+import React from 'react';
+import ReactDOM from 'react-dom';
+import App from './Components/App/App';
+import './index.css';
 
 import appReducer from './reducers'
 import { createStore, applyMiddleware } from 'redux';
@@ -16,5 +16,5 @@ ReactDOM.render(
   <Provider store={store}>
     <App />
   </Provider>, 
-  document.getElementById("root")
+  document.getElementById('root')
 );

@@ -1,26 +1,33 @@
-import React from 'react';
-import CardList from "../Components/CardList";
-import SearchBox from "../Components/SearchBox";
-import Scroll from "../Components/Scroll";
+import React, { Component } from 'react';
+import CardList from '../Components/CardList';
+import SearchBox from '../Components/SearchBox';
+import Scroll from '../Components/Scroll';
 
-const CardFilterView = ({ 
-  onSearchChange, 
-  searchTerm, 
-  isPending, 
-  robots }) => {
+class CardFilterView extends Component {
+  componentWillMount () {
+    this.props.getRobots();
+  }
 
-  return (
-    <div>
-      <SearchBox onSearchChange={onSearchChange} searchTerm={searchTerm} />
-        <Scroll>
-          {
-            isPending
-              ? <h2>Loading... { searchTerm }</h2>
-              : <CardList robots={robots} />
-          }
-        </Scroll>
-    </div>
+  render () {
+   const { 
+    onSearchChange, 
+    searchTerm, 
+    isPending, 
+    robots } = this.props;
+    
+    return (
+      <div>
+        <SearchBox onSearchChange={onSearchChange} searchTerm={searchTerm} />
+          <Scroll>
+            {
+              isPending
+                ? <h2>Loading... { searchTerm }</h2>
+                : <CardList robots={robots} />
+            }
+          </Scroll>
+      </div>
     );
+  }
 }
 
 CardFilterView.propTypes = {

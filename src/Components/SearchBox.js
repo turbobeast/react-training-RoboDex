@@ -1,10 +1,10 @@
-import React from "react";
+import React from 'react';
 
 const SearchBox = (props) => {
   const { onSearchChange, searchTerm } = props;
   return (
-    <div className="pa2">
-      <input className="pa2" type="search" placeholder="search Robots..." value={searchTerm} onChange={
+    <div className='pa2'>
+      <input className='pa2' type='search' placeholder='search Robots...' value={searchTerm} onChange={
         onSearchChange
       } />
     </div>
