@@ -1,7 +1,7 @@
 import { connect } from 'react-redux';
 import { setSearchTerm } from '../actions';
 import { getRobots } from '../actions';
-import CardFilterView from '../Components/CardFilterView';
+import CardFilterView from '../Components/CardList/CardFilterView';
 
 const mapStateToProps = (state) => {
   const searchTerm = state.search.searchTerm

@@ -1,5 +1,5 @@
 import { connect } from 'react-redux';
-import ProfileView from '../Components/ProfileView';
+import ProfileView from '../Components/Profile/ProfileView';
 import { getRobot } from '../actions';
 
 const mapStateToProps = (state, ownProps) => {

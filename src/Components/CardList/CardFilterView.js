@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import CardList from '../Components/CardList';
-import SearchBox from '../Components/SearchBox';
-import Scroll from '../Components/Scroll';
+import CardList from './CardList';
+import SearchBox from '../../Components/SearchBox';
+import Scroll from '../../Components/Scroll';
 
 class CardFilterView extends Component {
   componentWillMount () {
