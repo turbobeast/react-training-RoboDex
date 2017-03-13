@@ -24,14 +24,10 @@ const mapDispatchToProps = (dispatch) => {
 class App extends Component {
   
   componentDidMount() {
-    console.log(this.props);
     this.props.getRobots();
   }
 
-
-
   render() {
-    console.log(this.props);
     const { robots, isPending } = this.props;
     const { onSearchChange, searchTerm } = this.props;
     const filteredRobots = robots.filter(
