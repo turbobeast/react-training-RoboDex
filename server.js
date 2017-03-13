@@ -2,10 +2,16 @@ const express = require('express');
 const path = require('path');
 const app = express();
 const port = 8080;
+const { htmlTemplate } = require('./views/index.html');
+const manifest = require('./build/asset-manifest.json');
 
-app.use('/react-training-RoboDex/static', express.static(path.join(__dirname, 'build', 'static')));
+app.use('*/static', express.static(path.join(__dirname, 'build', 'static')));
 app.use((req, res) => {
-  res.sendFile(path.join(__dirname, 'build', 'index.html'));
+  const html = htmlTemplate({
+    cssPath: manifest['main.css'],
+    jsPath: manifest['main.js']
+  })
+  res.send(html);
 });
 
 app.listen(port, () => {
