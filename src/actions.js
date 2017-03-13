@@ -1,3 +1,5 @@
+require('es6-promise').polyfill();
+require('isomorphic-fetch');
 
 import { 
   SET_SEARCH_TERM, 

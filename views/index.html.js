@@ -1,4 +1,4 @@
-module.exports.htmlTemplate = ({ cssPath, jsPath }) => `
+module.exports.htmlTemplate = ({ cssPath, jsPath, appHTML }) => `
 <!doctype html>
 <html lang="en">
   <head>
@@ -11,6 +11,7 @@ module.exports.htmlTemplate = ({ cssPath, jsPath }) => `
   </head>
   <body>
     <div id="root">
+    ${appHTML}
     </div>
     <script type="text/javascript" src="${jsPath}"></script>
   </body>
