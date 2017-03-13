@@ -1,8 +1,11 @@
 import { 
   SET_SEARCH_TERM, 
   GET_ROBOTS_IS_PENDING,
+  GET_ROBOT_IS_PENDING,
   GET_ROBOTS_WAS_SUCCESSFUl,
+  GET_ROBOT_WAS_SUCCESSFUL,
   GET_ROBOTS_HAD_ERROR,
+  GET_ROBOT_HAD_ERROR,
 } from './constants';
 import { combineReducers } from 'redux';
 
@@ -19,16 +22,22 @@ const searchReducer = (state = searchInitialState, action = {}) => {
 
 const robotInitialState = {
   robots: [],
-  isPending: false,
+  isPending: true,
   error: '',
 };
 const robotReducer = (state = robotInitialState, action = {}) => {
   switch (action.type){
     case GET_ROBOTS_IS_PENDING:
+    case GET_ROBOT_IS_PENDING:
       return Object.assign({}, state, { isPending: true })
     case GET_ROBOTS_WAS_SUCCESSFUl:
       return Object.assign({}, state, {robots: action.payload, isPending: false })
+    case GET_ROBOT_WAS_SUCCESSFUL:
+      return Object.assign({}, state, { isPending: false }, {
+        robots: [...state.robots, action.payload]
+      })
     case GET_ROBOTS_HAD_ERROR:
+    case GET_ROBOT_HAD_ERROR:
       return Object.assign({}, state, {error: action.payload, isPending: false })
     default: 
       return state;
