@@ -17,7 +17,7 @@ const { Provider } = require('react-redux');
 const { renderToString } = require('react-dom/server');
 const { createElement } = require('react');
 
-const store = require('./src/store').default;
+const createStore = require('./src/store').default;
 const App = require('./src/Components/App/App').default;
 
 app.use('*/static', express.static(path.join(__dirname, 'build', 'static')));
@@ -29,6 +29,7 @@ app.use((req, res) => {
       </Router>
     </Provider>
   */
+  const store = createStore()
   const renderedApp = renderToString(
     createElement(Provider, { store },
       createElement(StaticRouter, { location: req.url, context: {} },
