@@ -19,6 +19,28 @@ const { createElement } = require('react');
 
 const createStore = require('./src/store').default;
 const App = require('./src/Components/App/App').default;
+const htmlCache = {};
+
+function makeCacheObject (html, expires = 3600) {
+  return {
+    html,
+    expires,
+    createdAt: Date.now(),
+  }
+}
+
+function isFresh (cacheObj) {
+  return (Date.now() - cacheObj.createdAt) < cacheObj.expires;
+}
+
+function checkCache (req, res, next) {
+  const cachedObj = htmlCache[req.url];
+  if (cachedObj && isFresh(cachedObj)) {
+    return res.send(cachedObj.html);
+  }
+
+  next();
+}
 
 function bootstrap (location, store) {
   /*
@@ -51,6 +73,7 @@ function handleSSRRequest (req, res) {
         appHTML,
         state,
       });
+      htmlCache[req.url] = makeCacheObject(html);
       res.send(html);
     }
   })
@@ -60,6 +83,7 @@ function handleSSRRequest (req, res) {
 }
 
 app.use('*/static', express.static(path.join(__dirname, 'build', 'static')));
+app.use(checkCache);
 app.use(handleSSRRequest);
 
 app.listen(port, () => {
