@@ -1,8 +1,16 @@
 import appReducer from './reducers'
 import { createStore, applyMiddleware } from 'redux';
-import { Provider } from 'react-redux';
 import createLogger from 'redux-logger';
 import reduxThunk from 'redux-thunk';
 
 const logger = createLogger();
-export default () => createStore(appReducer, applyMiddleware(logger, reduxThunk));
+let initialState;
+
+try {
+  initialState = window.__INITIAL_STATE__;
+  delete window.__INITIAL_STATE__;
+} catch(_) {
+  initialState = undefined;
+}
+
+export default () => createStore(appReducer, initialState, applyMiddleware(logger, reduxThunk));

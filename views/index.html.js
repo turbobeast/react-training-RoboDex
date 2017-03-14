@@ -1,4 +1,4 @@
-module.exports.htmlTemplate = ({ cssPath, jsPath, appHTML }) => `
+module.exports.htmlTemplate = ({ cssPath, jsPath, appHTML, state }) => `
 <!doctype html>
 <html lang="en">
   <head>
@@ -13,6 +13,9 @@ module.exports.htmlTemplate = ({ cssPath, jsPath, appHTML }) => `
     <div id="root">
     ${appHTML}
     </div>
+    <script>
+      window.__INITIAL_STATE__ = ${JSON.stringify(state)};
+    </script>
     <script type="text/javascript" src="${jsPath}"></script>
   </body>
 </html>`

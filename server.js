@@ -49,6 +49,7 @@ function handleSSRRequest (req, res) {
         cssPath: manifest['main.css'],
         jsPath: manifest['main.js'],
         appHTML,
+        state,
       });
       res.send(html);
     }
