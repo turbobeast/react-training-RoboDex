@@ -2,7 +2,7 @@ import React from 'react';
 import "./App.css";
 import RobotFilterViewContainer from '../../Containers/RobotFilterViewContainer';
 import ProfileViewContainer from '../../Containers/ProfileViewContainer';
-import { Route, Switch } from 'react-router-dom';
+import { Route, Switch, Redirect } from 'react-router-dom';
 
 function App() {
   return (
@@ -11,7 +11,7 @@ function App() {
         <Switch>
           <Route path="/" exact={true} component={RobotFilterViewContainer} />
           <Route path="/profile/:id" component={ProfileViewContainer} />
-          <Route render={() => <h2>Page Not Found</h2> } />
+          <Route render={() => <Redirect to={{ pathname: '/' }} />} />
         </Switch>
     </div>
   );
