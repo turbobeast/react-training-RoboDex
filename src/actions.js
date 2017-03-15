@@ -1,3 +1,5 @@
+require('es6-promise').polyfill();
+require('isomorphic-fetch');
 
 import { 
   SET_SEARCH_TERM, 
@@ -14,7 +16,11 @@ export const setSearchTerm = (term) => ({
 
 export const getRobots = () => {
   
-  return (dispatch) => {
+  return (dispatch, getState) => {
+    let state = getState();
+    if (state.robotData.robots.length >= 10) {
+      return;
+    }
 
     dispatch({type: GET_ROBOTS_IS_PENDING});
 
