@@ -13,4 +13,4 @@ try {
   initialState = undefined;
 }
 
-export default () => createStore(appReducer, initialState, applyMiddleware(logger, reduxThunk));
+export default () => createStore(appReducer, initialState, applyMiddleware(reduxThunk));

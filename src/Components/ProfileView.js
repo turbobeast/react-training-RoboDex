@@ -4,6 +4,7 @@ import Profile from './Profile';
 
 class ProfileView extends Component {
   componentWillMount () {
+    console.log('profileview will mount')
     this.props.getRobots()
   }
 

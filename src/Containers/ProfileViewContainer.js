@@ -2,6 +2,7 @@ import { connect } from 'react-redux';
 import { getRobots } from '../actions';
 import ProfileView from '../Components/ProfileView';
 
+console.log('PROFILEVEWCONTAINER IS INCLUDED');
 const mapStateToProps = (state, ownProps) => {
   const id = parseInt(ownProps.match.params.id, 10) || 1;
   const isPending = state.robotData.isPending;

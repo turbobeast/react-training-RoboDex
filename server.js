@@ -64,6 +64,7 @@ function handleSSRRequest (req, res) {
   const store = createStore();
   const unsubscribe = store.subscribe(() => {
     const state = store.getState();
+    console.log(state)
     if (!state.robotData.isPending) {
       unsubscribe();
       const appHTML = bootstrap(req.url, store);
